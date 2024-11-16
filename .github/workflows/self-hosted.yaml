@@ -10,6 +10,6 @@ jobs:
         runs-on: self-hosted
         steps:
         - name: Install tree
-          run: apt install tree
+          run: sudo apt -y install tree
         - name: Execute tree
           run: time tree | tree .
