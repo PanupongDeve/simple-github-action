@@ -1,0 +1,15 @@
+# Workflow demo installing a package and executing on a self-hoseted runner
+name: file tree
+
+on:
+    workflow_dispatch:
+
+jobs:
+    file-tree:
+
+        runs-on: self-hosted
+        steps:
+        - name: Install tree
+          run: apt install tree
+        - name: Execute tree
+          run: time tree | tree .
