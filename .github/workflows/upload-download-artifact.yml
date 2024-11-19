@@ -33,4 +33,4 @@ jobs:
             name: greetings-jar
         - shell: bash
           run: |
-            java -jar greetings-jar
+            java -jar greetings.jar
