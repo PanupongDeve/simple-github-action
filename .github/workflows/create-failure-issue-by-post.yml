@@ -1,0 +1,27 @@
+name: create-failure-issue-by-post
+
+on: 
+    workflow_dispatch:
+
+
+jobs:
+    curl_create_failure_issues:
+        runs-on: ubuntu-latest
+
+        permissions:
+            issues: write
+        steps:
+            - name: Create issue using REST API
+              run: |
+                    curl -X POST
+                    -H "authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"
+                    -H "Accept: application/vnd.github.v3+json"
+                    "https://api.github.com/repos/${{ github.repository }}
+                    /actions/workflows/create-failure-issue.yml/dispatches"
+                    -d '{"ref":"main",
+                    "inputs":
+                    {"title":"Automated workflow failure issue for commit
+                    ${{ github.sha }}",
+                    "body":"This issue was automatically created by the
+                    GitHub Action workflow ** ${{ github.workflow }} **"}
+                    }'
